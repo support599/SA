@@ -78,14 +78,14 @@
   .modal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
   .modal-title { font-family: Merriweather, serif; font-size: 24px; color: #2C2C2C; line-height: 1.2; }
   .modal-copy { font-size: 15px; color: #4A4A4A; line-height: 1.7; max-width: 680px; margin-top: 6px; }
-  .modal-close { background: transparent; border: none; color: #557373; font-size: 24px; cursor: pointer; line-height: 1; }
+  .modal-close { position: absolute; top: 22px; right: 22px; background: transparent; border: none; color: #557373; font-size: 24px; cursor: pointer; line-height: 1; padding: 0; }
   .intake-form { display: grid; gap: 20px; }
   .question { display: grid; gap: 10px; }
   .question label { font-size: 15px; font-weight: 700; color: #2C2C2C; }
-  .options { display: grid; gap: 10px; }
-  .option-field { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .option-field input[type="radio"], .option-field input[type="checkbox"] { accent-color: #557373; width: 18px; height: 18px; }
-  .option-field span { font-size: 14px; color: #2C2C2C; }
+  .options { display: grid; gap: 12px; }
+  .option-field { display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; width: 100%; }
+  .option-field input[type="radio"], .option-field input[type="checkbox"] { accent-color: #557373; width: 18px; height: 18px; flex-shrink: 0; }
+  .option-field span { font-size: 14px; color: #2C2C2C; line-height: 1.4; flex: 1; min-width: 0; }
   .short-input { width: 100%; max-width: 360px; border: 1px solid #BEC5CC; border-radius: 10px; padding: 12px 14px; font-size: 14px; color: #2C2C2C; background: #fff; }
   .short-input::placeholder { color: #8C98A4; }
   .checkbox-row { display: grid; gap: 10px; }
