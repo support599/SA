@@ -328,13 +328,23 @@
             <label class="option-field"><input type="checkbox" name="winGoals" value="Handle 40%+ more volume with current team"><span>Handle 40%+ more volume with current team</span></label>
             <label class="option-field"><input type="checkbox" name="winGoals" value="Significantly reduce payroll / hiring needs"><span>Significantly reduce payroll / hiring needs</span></label>
             <label class="option-field"><input type="checkbox" name="winGoals" value="Improve customer response time & satisfaction"><span>Improve customer response time & satisfaction</span></label>
-            <label class="option-field"><input type="checkbox" name="winGoals" value="Get my time back (stop being the bottleneck)"><span>Get my time back (stop being the bottleneck)</span></label>
+            <label class="option-field"><input type="checkbox" name="winGoals" value="Get my time back"><span>Get my time back</span></label>
             <label class="option-field"><input type="checkbox" name="winGoals" value="Other"><span>Other</span></label>
             <input class="short-input" type="text" name="winGoalsOther" placeholder="If other, please specify" aria-label="Other winning goal">
           </div>
         </div>
+        <div class="question">
+          <label>Contact Information</label>
+          <div class="options">
+            <input class="short-input" type="text" name="fullName" placeholder="Full Name" aria-label="Full Name" required>
+            <input class="short-input" type="email" name="email" placeholder="Email" aria-label="Email" required>
+            <input class="short-input" type="tel" name="phone" placeholder="Phone number" aria-label="Phone number" required>
+          </div>
+        </div>
+        <div class="question">
+          <label class="option-field"><input type="checkbox" name="smsConsent" value="agree" required><span>I agree to receive SMS, promotions, and updates. Message and data rates may apply.</span></label>
+        </div>
         <div class="form-footer">
-          <div class="restore-copy">Short form. Mostly multiple choice. Sales sees this before the call.</div>
           <button class="submit-btn" type="submit">Submit &rarr;</button>
         </div>
       </form>
