@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 .page { background: #EDEEF2; font-family: Arial, sans-serif; }
@@ -17,25 +17,47 @@
 }
 .hero { padding: 40px 28px 32px; text-align: center; }
 .pill { display: inline-block; background: #DFE5F3; color: #2C2C2C; font-size: 14px; font-weight: 500; letter-spacing: 0.06em; padding: 7px 18px; border-radius: 40px; margin-bottom: 24px; border: 0.5px solid #557373; }
-.hero-h1 { font-size: 25px; font-weight: 700; color: #2C2C2C; line-height: 1.4; margin-bottom: 14px; font-family: Merriweather, serif; letter-spacing: 0.06em; max-width: 720px; margin-left: auto; margin-right: auto; text-transform: capitalize; }
+.hero-h1 { font-size: 25px; font-weight: 700; color: #2C2C2C; line-height: 1.15; margin-bottom: 14px; font-family: Montserrat, sans-serif; font-weight: 700; letter-spacing: 0.01em; max-width: 720px; margin-left: auto; margin-right: auto; text-transform: capitalize; }
 .hero-h1 strong { font-weight: 500; color: #557373; letter-spacing: 0.04em; }
 .hero-sub { font-size: 16px; color: #0D0D0D; line-height: 1.75; max-width: 480px; margin: 0 auto 28px; opacity: 0.75; }
 .hero-sub b { color: #2C2C2C; opacity: 1; font-weight: 700; }
 .vsl-placeholder { background: #2C2C2C; border-radius: 12px; max-width: 480px; margin: 0 auto 28px; height: 220px; }
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.04); }
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0px rgba(85,115,115,0); transform: scale(1); }
+  50% { box-shadow: 0 0 28px rgba(85,115,115,0.6), 0 0 60px rgba(85,115,115,0.25); transform: scale(1.03); }
 }
-.cta-btn { display: inline-block; background: #557373; color: #F2EFEA; font-size: 15px; font-weight: 500; letter-spacing: 0.2em; padding: 18px 52px; border-radius: 50px; cursor: pointer; border: none; animation: pulse 2s ease-in-out infinite; font-family: Arial, sans-serif; text-transform: uppercase; }
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #557373 0%, #6a9494 40%, #88b4b4 50%, #6a9494 60%, #557373 100%);
+  background-size: 200% auto;
+  color: #F2EFEA;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  padding: 18px 52px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  animation: glow-pulse 2.5s ease-in-out infinite, shimmer 3s linear infinite;
+  transition: transform 0.2s ease;
+}
+.cta-btn:hover { transform: scale(1.05); }
 .cta-sub { font-size: 13px; color: #557373; letter-spacing: 0.08em; margin-top: 10px; }
 .vsl-cta { text-align: center; margin-bottom: 40px; }
 .proof { background: #2C2C2C; padding: 40px 28px; }
 .eyebrow { text-align: center; font-size: 13px; letter-spacing: 0.16em; color: #F2EFEA; opacity: 0.6; margin-bottom: 8px; }
-.proof-h2 { text-align: center; font-family: Merriweather, serif; font-size: 25px; font-weight: 400; color: #F2EFEA; font-style: normal; margin-bottom: 6px; }
+.proof-h2 { text-align: center; font-family: Montserrat, sans-serif; font-size: 25px; font-weight: 700; color: #F2EFEA; font-style: normal; margin-bottom: 6px; letter-spacing: 0.01em; line-height: 1.15; }
 .proof-sub { text-align: center; font-size: 15px; color: #F2EFEA; opacity: 0.6; margin-bottom: 28px; max-width: 560px; margin-left: auto; margin-right: auto; }
 .grid { display: grid; grid-template-columns: 1fr; gap: 12px; max-width: 960px; margin: 0 auto 12px; }
 @media (min-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } }
-.card { background: #F9F9F7; border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+.card { background: #F9F9F7; border-radius: 12px; padding: 22px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.07); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.13); }
 .card-head { display: flex; align-items: center; gap: 9px; }
 .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #557373; }
 .cname { font-size: 16px; font-weight: 700; color: #2C2C2C; }
@@ -55,7 +77,8 @@
 .testi-grid { display: grid; grid-template-columns: 1fr; gap: 16px; max-width: 960px; margin: 0 auto; }
 @media (min-width: 600px) { .testi-grid { grid-template-columns: 1fr 1fr; } }
 .testi-label { text-align: center; font-size: 13px; letter-spacing: 0.14em; color: #557373; margin-bottom: 18px; }
-.testimonial { background: #DFE5F3; border-radius: 12px; padding: 20px; border: 0.5px solid #557373; }
+.testimonial { background: #DFE5F3; border-radius: 12px; padding: 24px; border: 0.5px solid #557373; box-shadow: 0 4px 24px rgba(0,0,0,0.08); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.testimonial:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.14); }
 .testi-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 .testi-av { width: 38px; height: 38px; border-radius: 50%; background: #557373; display: flex; align-items: center; justify-content: center; color: #F2EFEA; font-size: 16px; font-weight: 500; flex-shrink: 0; }
 .testi-name { font-size: 17px; font-weight: 500; color: #2C2C2C; }
@@ -64,7 +87,8 @@
 .stars { color: #557373; font-size: 17px; margin-bottom: 14px; }
 .stars span { font-size: 15px; color: #2C2C2C; font-weight: 500; }
 .testi-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.tstat { background: #2C2C2C; border-radius: 8px; padding: 10px 8px; text-align: center; }
+.tstat { background: #2C2C2C; border-radius: 8px; padding: 10px 8px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.2); transition: transform 0.2s ease; }
+.tstat:hover { transform: scale(1.04); }
 .tstat-val { font-size: 18px; font-weight: 500; color: #F2EFEA; }
 .tstat-label { font-size: 13px; color: #DFE5F3; opacity: 0.75; margin-top: 2px; line-height: 1.3; }
 .cta-wrap { text-align: center; padding: 32px 28px 36px; }
@@ -96,7 +120,13 @@
   .success-message.visible { display: block; }
   .success-title { font-size: 22px; font-weight: 700; color: #2C2C2C; margin-bottom: 10px; }
   .success-text { font-size: 15px; color: #4A4A4A; line-height: 1.7; }
-  @media (max-width: 720px) { .modal-card { padding: 20px; } .modal-header { flex-direction: column; align-items: flex-start; } .submit-btn { width: 100%; } }</style>
+  @media (max-width: 720px) { .modal-card { padding: 20px; } .modal-header { flex-direction: column; align-items: flex-start; } .submit-btn { width: 100%; } }
+/* Section dividers */
+.divider-down { position: relative; line-height: 0; }
+.divider-down svg { display: block; width: 100%; }
+.divider-up { position: relative; line-height: 0; }
+.divider-up svg { display: block; width: 100%; transform: rotate(180deg); }
+</style>
 
 <div class="page">
   <nav class="nav">
@@ -116,9 +146,9 @@
       <div class="cta-sub">SUBMIT FORM</div>
     </div>
   </section>
+  <div class="divider-down" style="background:#EDEEF2;"><svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0 C360,60 1080,60 1440,0 L1440,60 L0,60 Z" fill="#2C2C2C"/></svg></div>
   <section class="proof">
-    <p class="eyebrow">WHAT THE WORLD'S TOP OPERATORS ARE SAYING ABOUT OUR CORE SOFTWARE*</p>
-    <h2 class="proof-h2">The Operators Who Got There First Are Already Pulling Ahead.</h2>
+    <h2 class="proof-h2">What The World's Top Operators Are Saying About Our Core Software*</h2>
     <p class="proof-sub">These are real, public statements from executives at companies you know — running the same system we install inside your business.</p>
     <div class="grid">
       <div class="card">
@@ -162,6 +192,37 @@
       <button class="cta-btn open-intake-modal">SEE IF YOUR BUSINESS QUALIFIES &rarr;</button>
     </div>
   </section>
+
+  <div class="divider-down" style="background:#2C2C2C;"><svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,60 C360,0 1080,0 1440,60 L1440,0 L0,0 Z" fill="#557373"/></svg></div>
+  <section class="steps-section" style="padding:48px 28px; background:#557373;">
+    <div style="max-width:960px;margin:0 auto;text-align:center;">
+      <h2 style="margin:0 0 16px;font-size:26px;font-family:Montserrat,sans-serif;font-weight:700;color:#DFE5F3;letter-spacing:0.01em;line-height:1.2;">The Dedicated Team That Does What A $150K AI Engineer Would — For A Fraction Of The Cost.</h2>
+      <p style="font-size:15px;color:#F2EFEA;opacity:0.8;max-width:640px;margin:0 auto 36px;line-height:1.7;">A Client Success Manager and AI Implementation Officer who map your business, connect the core software* the world's top operators use, and install everything for you.</p>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between;">
+
+        <div style="flex:1;min-width:260px;background:#fff;padding:28px 24px;border-radius:12px;border:0.5px solid #557373;text-align:left;">
+          <div style="font-size:10px;letter-spacing:0.16em;color:#557373;margin-bottom:10px;text-transform:uppercase;">Step 01</div>
+          <div style="font-family:Merriweather,serif;font-weight:700;font-size:16px;color:#2C2C2C;margin-bottom:12px;">Operational Audit</div>
+          <p style="margin:0;color:#4A4A4A;font-size:16px;line-height:1.7;">Our Operations Strategist gets on a call with you, identifies exactly where your business is leaking time and money, and walks you through a real proposal with actual scope and investment.</p>
+        </div>
+
+        <div style="flex:1;min-width:260px;background:#fff;padding:28px 24px;border-radius:12px;border:0.5px solid #557373;text-align:left;">
+          <div style="font-size:10px;letter-spacing:0.16em;color:#557373;margin-bottom:10px;text-transform:uppercase;">Step 02</div>
+          <div style="font-family:Merriweather,serif;font-weight:700;font-size:16px;color:#2C2C2C;margin-bottom:12px;">Custom AI Deployment</div>
+          <p style="margin:0;color:#4A4A4A;font-size:16px;line-height:1.7;">Your dedicated Client Success Manager and AI Implementation Officer map the full scope and deploy AI systems built around your business using the best tools available today.</p>
+        </div>
+
+        <div style="flex:1;min-width:260px;background:#fff;padding:28px 24px;border-radius:12px;border:0.5px solid #557373;text-align:left;">
+          <div style="font-size:10px;letter-spacing:0.16em;color:#557373;margin-bottom:10px;text-transform:uppercase;">Step 03</div>
+          <div style="font-family:Merriweather,serif;font-weight:700;font-size:16px;color:#2C2C2C;margin-bottom:12px;">Optimization & Ownership</div>
+          <p style="margin:0;color:#4A4A4A;font-size:16px;line-height:1.7;">We train you and your team, refine the systems, and make sure what we built becomes a permanent competitive advantage that grows with your business.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-down" style="background:#557373;"><svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0 C360,60 1080,60 1440,0 L1440,60 L0,60 Z" fill="#EDEEF2"/></svg></div>
   <section class="testi-section">
     <p class="testi-label">AND HERE'S WHAT IT LOOKS LIKE FOR A BUSINESS LIKE YOURS</p>
     <div class="testi-grid">
@@ -413,4 +474,37 @@
       console.log('Intake form submitted:', data);
     });
   </script>
+
+  <script>
+    const animateEls = document.querySelectorAll(
+      '.hero, .proof, .steps-section, .testi-section, .testimonial, .tstat, .cta-wrap, .stats-bar, .sbar-item, .banner, .grid .card'
+    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    animateEls.forEach(el => {
+      el.classList.add('fade-up');
+      observer.observe(el);
+    });
+    document.querySelectorAll('.testi-grid .testimonial, .stats-bar .sbar-item').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 80}ms`;
+    });
+  </script>
+
+  <style>
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </div>
