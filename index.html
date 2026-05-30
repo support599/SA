@@ -72,15 +72,38 @@
 .sbar-item { padding: 18px 10px; text-align: center; border-right: 0.5px solid rgba(242,239,234,0.2); }
 .sbar-item:last-child { border-right: none; }
 .sbar-val { font-size: 21px; font-weight: 500; color: #F2EFEA; }
-.sbar-label { font-size: 13px; color: #DFE5F3; margin-top: 3px; line-height: 1.35; opacity: 0.85; }
-</style>
+.sbar-label { font-size: 13px; color: #DFE5F3; margin-top: 3px; line-height: 1.35; opacity: 0.85; }  .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(16,20,28,0.72); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 24px; z-index: 50; }
+  .modal-backdrop.open { display: flex; }
+  .modal-card { width: 100%; max-width: 760px; background: #F9F9F7; border-radius: 24px; box-shadow: 0 28px 80px rgba(0,0,0,0.18); padding: 28px; position: relative; max-height: 92vh; overflow-y: auto; }
+  .modal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+  .modal-title { font-family: Merriweather, serif; font-size: 24px; color: #2C2C2C; line-height: 1.2; }
+  .modal-copy { font-size: 15px; color: #4A4A4A; line-height: 1.7; max-width: 680px; margin-top: 6px; }
+  .modal-close { background: transparent; border: none; color: #557373; font-size: 24px; cursor: pointer; line-height: 1; }
+  .intake-form { display: grid; gap: 20px; }
+  .question { display: grid; gap: 10px; }
+  .question label { font-size: 15px; font-weight: 700; color: #2C2C2C; }
+  .options { display: grid; gap: 10px; }
+  .option-field { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .option-field input[type="radio"], .option-field input[type="checkbox"] { accent-color: #557373; width: 18px; height: 18px; }
+  .option-field span { font-size: 14px; color: #2C2C2C; }
+  .short-input { width: 100%; max-width: 360px; border: 1px solid #BEC5CC; border-radius: 10px; padding: 12px 14px; font-size: 14px; color: #2C2C2C; background: #fff; }
+  .short-input::placeholder { color: #8C98A4; }
+  .checkbox-row { display: grid; gap: 10px; }
+  .form-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; margin-top: 4px; }
+  .submit-btn { background: #557373; color: #F2EFEA; border: none; border-radius: 999px; padding: 16px 26px; font-size: 15px; font-weight: 700; cursor: pointer; width: auto; }
+  .restore-copy { font-size: 13px; color: #557373; opacity: 0.85; }
+  .success-message { display: none; text-align: center; padding: 36px 16px; }
+  .success-message.visible { display: block; }
+  .success-title { font-size: 22px; font-weight: 700; color: #2C2C2C; margin-bottom: 10px; }
+  .success-text { font-size: 15px; color: #4A4A4A; line-height: 1.7; }
+  @media (max-width: 720px) { .modal-card { padding: 20px; } .modal-header { flex-direction: column; align-items: flex-start; } .submit-btn { width: 100%; } }</style>
 
 <div class="page">
   <nav class="nav">
     <div class="nav-inner">
       <div class="nav-left"></div>
       <div class="nav-logo">SHADOW <span>AGENTS</span></div>
-      <button class="nav-btn">Apply for FREE Audit &rarr;</button>
+      <button class="nav-btn open-intake-modal">Apply for FREE Audit &rarr;</button>
     </div>
   </nav>
   <section class="hero">
@@ -89,7 +112,7 @@
     <p class="hero-sub">Watch how operators exactly like you are using it to buy back their time and improve the quality of their lives and businesses.</p>
     <div class="vsl-placeholder"></div>
     <div class="vsl-cta">
-      <button class="cta-btn">SEE IF YOUR BUSINESS QUALIFIES &rarr;</button>
+      <button class="cta-btn open-intake-modal">SEE IF YOUR BUSINESS QUALIFIES &rarr;</button>
       <div class="cta-sub">SUBMIT FORM</div>
     </div>
   </section>
@@ -136,7 +159,7 @@
       <p class="banner-sub">Shadow Agents · 90-Day Performance Guarantee</p>
     </div>
     <div style="text-align: center; margin-top: 16px;">
-      <button class="cta-btn">SEE IF YOUR BUSINESS QUALIFIES &rarr;</button>
+      <button class="cta-btn open-intake-modal">SEE IF YOUR BUSINESS QUALIFIES &rarr;</button>
     </div>
   </section>
   <section class="testi-section">
@@ -230,7 +253,7 @@
     </div>
   </section>
   <div class="cta-wrap">
-    <button class="cta-btn">SEE IF YOUR BUSINESS QUALIFIES &rarr;</button>
+    <button class="cta-btn open-intake-modal">SEE IF YOUR BUSINESS QUALIFIES &rarr;</button>
     <div class="cta-sub">SUBMIT FORM</div>
   </div>
   <div class="stats-bar">
@@ -239,4 +262,145 @@
     <div class="sbar-item"><div class="sbar-val">3.5x</div><div class="sbar-label">Avg ROI Within 12 Months</div></div>
     <div class="sbar-item"><div class="sbar-val">90-Day</div><div class="sbar-label">Performance Guarantee</div></div>
   </div>
+  <div class="modal-backdrop" id="intakeModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="intakeModalTitle">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="intakeModalTitle">Pre-Call Intake Form Takes 60 seconds.</div>
+          <p class="modal-copy">Get a fully customized proposal and pricing estimate ready before we hop on our call. The more accurately you answer these quick questions, the more precise and valuable your Free Audit will be.</p>
+        </div>
+        <button class="modal-close" id="modalClose" aria-label="Close form">×</button>
+      </div>
+      <form class="intake-form" id="intakeForm">
+        <div class="question">
+          <label for="businessType">1. What best describes your business?</label>
+          <div class="options">
+            <label class="option-field"><input type="radio" name="businessType" id="businessRealEstateAgent" value="Real Estate Agent / Broker" required><span>Real Estate Agent / Broker (individual or small team)</span></label>
+            <label class="option-field"><input type="radio" name="businessType" value="Real Estate Team / Agency"><span>Real Estate Team / Agency</span></label>
+            <label class="option-field"><input type="radio" name="businessType" value="Freight, Logistics, or Transportation"><span>Freight, Logistics, or Transportation</span></label>
+            <label class="option-field"><input type="radio" name="businessType" value="Home Services / Contracting / Trades"><span>Home Services / Contracting / Trades</span></label>
+            <label class="option-field"><input type="radio" name="businessType" value="Professional Services (Consulting, Coaching, Agency, etc.)"><span>Professional Services (Consulting, Coaching, Agency, etc.)</span></label>
+            <label class="option-field"><input type="radio" name="businessType" value="Other"><span>Other (please specify)</span></label>
+            <input class="short-input" type="text" name="businessTypeOther" placeholder="If other, please specify" aria-label="Other business type">
+          </div>
+        </div>
+        <div class="question">
+          <label>2. What is your current monthly revenue range?</label>
+          <div class="options">
+            <label class="option-field"><input type="radio" name="revenueRange" value="$30k – $50k" required><span>$30k – $50k</span></label>
+            <label class="option-field"><input type="radio" name="revenueRange" value="$50k – $100k"><span>$50k – $100k</span></label>
+            <label class="option-field"><input type="radio" name="revenueRange" value="$100k – $250k"><span>$100k – $250k</span></label>
+            <label class="option-field"><input type="radio" name="revenueRange" value="$250k+"><span>$250k+</span></label>
+            <label class="option-field"><input type="radio" name="revenueRange" value="Prefer not to say / Other"><span>Prefer not to say / Other</span></label>
+            <input class="short-input" type="text" name="revenueRangeOther" placeholder="If other, please specify" aria-label="Other revenue range">
+          </div>
+        </div>
+        <div class="question">
+          <label>3. How many people are currently on your operations / admin / CS team? (including yourself if you handle ops)</label>
+          <div class="options">
+            <label class="option-field"><input type="radio" name="teamSize" value="Just me (solo / very small)" required><span>Just me (solo / very small)</span></label>
+            <label class="option-field"><input type="radio" name="teamSize" value="1–2 people"><span>1–2 people</span></label>
+            <label class="option-field"><input type="radio" name="teamSize" value="3–5 people"><span>3–5 people</span></label>
+            <label class="option-field"><input type="radio" name="teamSize" value="6–10 people"><span>6–10 people</span></label>
+            <label class="option-field"><input type="radio" name="teamSize" value="10+ people"><span>10+ people</span></label>
+            <label class="option-field"><input type="radio" name="teamSize" value="Other"><span>Other</span></label>
+            <input class="short-input" type="text" name="teamSizeOther" placeholder="If other, please specify" aria-label="Other team size">
+          </div>
+        </div>
+        <div class="question">
+          <label>4. Where would you like to improve efficiency the most? (Select up to 3)</label>
+          <div class="checkbox-row" id="painPoints">
+            <label class="option-field"><input type="checkbox" name="bottlenecks" value="Customer Service / Inbox overload"><span>Customer Service / Inbox overload</span></label>
+            <label class="option-field"><input type="checkbox" name="bottlenecks" value="Dispatch, scheduling & follow-ups"><span>Dispatch, scheduling & follow-ups</span></label>
+            <label class="option-field"><input type="checkbox" name="bottlenecks" value="Supplier / Vendor coordination & reordering"><span>Supplier / Vendor coordination & reordering</span></label>
+            <label class="option-field"><input type="checkbox" name="bottlenecks" value="Driver / Team check-ins & logistics"><span>Driver / Team check-ins & logistics</span></label>
+            <label class="option-field"><input type="checkbox" name="bottlenecks" value="Lead follow-up & nurturing"><span>Lead follow-up & nurturing</span></label>
+            <label class="option-field"><input type="checkbox" name="bottlenecks" value="Administrative / repetitive tasks"><span>Administrative / repetitive tasks</span></label>
+            <label class="option-field"><input type="checkbox" name="bottlenecks" value="All of the above"><span>All of the above</span></label>
+            <label class="option-field"><input type="checkbox" name="bottlenecks" value="Other"><span>Other (please specify)</span></label>
+            <input class="short-input" type="text" name="bottlenecksOther" placeholder="If other, please specify" aria-label="Other bottleneck">
+          </div>
+        </div>
+        <div class="question">
+          <label>5. What would “winning” look like for you in the next 90 days? (Select all that apply)</label>
+          <div class="checkbox-row">
+            <label class="option-field"><input type="checkbox" name="winGoals" value="Save 30–50+ hours per week"><span>Save 30–50+ hours per week</span></label>
+            <label class="option-field"><input type="checkbox" name="winGoals" value="Handle 40%+ more volume with current team"><span>Handle 40%+ more volume with current team</span></label>
+            <label class="option-field"><input type="checkbox" name="winGoals" value="Significantly reduce payroll / hiring needs"><span>Significantly reduce payroll / hiring needs</span></label>
+            <label class="option-field"><input type="checkbox" name="winGoals" value="Improve customer response time & satisfaction"><span>Improve customer response time & satisfaction</span></label>
+            <label class="option-field"><input type="checkbox" name="winGoals" value="Get my time back (stop being the bottleneck)"><span>Get my time back (stop being the bottleneck)</span></label>
+            <label class="option-field"><input type="checkbox" name="winGoals" value="Other"><span>Other</span></label>
+            <input class="short-input" type="text" name="winGoalsOther" placeholder="If other, please specify" aria-label="Other winning goal">
+          </div>
+        </div>
+        <div class="form-footer">
+          <div class="restore-copy">Short form. Mostly multiple choice. Sales sees this before the call.</div>
+          <button class="submit-btn" type="submit">Submit &rarr;</button>
+        </div>
+      </form>
+      <div class="success-message" id="intakeSuccess">
+        <div class="success-title">Thanks — we’ve got your answers.</div>
+        <p class="success-text">This helps our team prepare your setup scope, pricing, and a custom proposal before the first call.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    const intakeModal = document.getElementById('intakeModal');
+    const openButtons = document.querySelectorAll('.open-intake-modal');
+    const modalClose = document.getElementById('modalClose');
+    const intakeForm = document.getElementById('intakeForm');
+    const successMessage = document.getElementById('intakeSuccess');
+    const painCheckboxes = document.querySelectorAll('#painPoints input[type="checkbox"]');
+    const painLimit = 3;
+
+    function openModal(event) {
+      event.preventDefault();
+      intakeModal.classList.add('open');
+      intakeModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      successMessage.classList.remove('visible');
+      intakeForm.style.display = 'grid';
+    }
+
+    function closeModal() {
+      intakeModal.classList.remove('open');
+      intakeModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    openButtons.forEach(btn => btn.addEventListener('click', openModal));
+    modalClose.addEventListener('click', closeModal);
+    intakeModal.addEventListener('click', event => {
+      if (event.target === intakeModal) closeModal();
+    });
+
+    painCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        const checked = Array.from(painCheckboxes).filter(item => item.checked);
+        if (checked.length > painLimit) {
+          checkbox.checked = false;
+          alert('Please select up to 3 items.');
+        }
+      });
+    });
+
+    intakeForm.addEventListener('submit', event => {
+      event.preventDefault();
+      intakeForm.style.display = 'none';
+      successMessage.classList.add('visible');
+      successMessage.scrollIntoView({ behavior: 'smooth' });
+      const formData = new FormData(intakeForm);
+      const data = {};
+      formData.forEach((value, key) => {
+        if (!Object.prototype.hasOwnProperty.call(data, key)) {
+          data[key] = value;
+        } else if (Array.isArray(data[key])) {
+          data[key].push(value);
+        } else {
+          data[key] = [data[key], value];
+        }
+      });
+      console.log('Intake form submitted:', data);
+    });
+  </script>
 </div>
